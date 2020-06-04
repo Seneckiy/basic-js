@@ -10,8 +10,7 @@ function UserException(message) {
 const chainMaker = {
   arr: [],
   getLength() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    return this.arr.length
   },
   addLink(value = ' ') {
     this.arr.push(value);
@@ -19,7 +18,7 @@ const chainMaker = {
   },
   removeLink(position) {
     let index = position - 1;
-    if (this.arr[index] !== 'undefined'){
+    if (this.arr[index] !== undefined){
       this.arr.splice(index, 1);
       return this
     }
