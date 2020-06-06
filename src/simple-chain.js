@@ -1,25 +1,48 @@
 const CustomError = require("../extensions/custom-error");
 
+
+
+function UserException(message) {
+   this.message = message;
+   this.name = "User Defined Exception";
+}
+
 const chainMaker = {
+  arr: [],
   getLength() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    return this.arr.length
   },
-  addLink(value) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+  addLink(value = ' ') {
+    this.arr.push(value);
+    return this
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    let index = position - 1;
+    if (this.arr[index] !== undefined){
+      this.arr.splice(index, 1);
+      return this
+    }
+    else{
+      this.arr = [];
+      throw new UserException(`Unexpected position: ${position}`);
+    }
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.arr.reverse();
+    return this
   },
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    let str = '';
+    for (ind in this.arr){
+      if (ind == 0){
+        str = `( ${this.arr[ind]} )`
+      }
+      else {
+        str = `${str}~~( ${this.arr[ind]} )`
+      }
+    }
+    this.arr = [];
+    return str
   }
 };
 
